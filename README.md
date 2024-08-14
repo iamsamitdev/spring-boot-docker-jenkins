@@ -158,5 +158,3 @@ I'm a full stack developer. I love programming and I am always eager to learn ne
 * Optimism
 * Immutable X
 * zkSync
-* Loopring
-* StarkWare
