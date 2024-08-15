@@ -1,15 +1,15 @@
 pipeline {
     agent any
-    
+
     environment {
         MAVEN_ARGS=" -e clean install"
-        dockerContainerName = "bookapi_${ENV}"
-        dockerImageName = "bookapi_api_${ENV}"
-        SPRING_PROFILES_ACTIVE = "${ENV}"
+        dockerContainerName = "bookapi_${params.ENV}"
+        dockerImageName = "bookapi_api_${params.ENV}"
+        SPRING_PROFILES_ACTIVE = "${params.ENV}"
     }
 
     parameters {
-        choice(name: 'ENV', choices: ['staging', 'production'], description: 'Select Environment (staging, production)')
+      choice(name: 'ENV', choices: ['staging', 'production'], description: 'Select Environment (staging, production)')
     }
 
     stages {
@@ -41,7 +41,7 @@ pipeline {
         stage('docker-compose start') {
             steps {
                 sh """
-                SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE} docker-compose -f docker-compose-${ENV}.yml up -d --build
+                SPRING_PROFILES_ACTIVE=${SPRING_PROFILES_ACTIVE} docker-compose -f docker-compose-${params.ENV}.yml up -d --build
                 """
             }
         }
