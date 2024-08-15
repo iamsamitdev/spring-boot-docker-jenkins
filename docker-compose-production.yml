@@ -20,7 +20,7 @@ services:
       - "8432:5432"
     networks:
       - spring_production_network
-  stagingapi:
+  productioapi:
     image: "bookapi_api_production"
     build:
       context: .
