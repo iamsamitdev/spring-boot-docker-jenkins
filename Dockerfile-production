@@ -1,0 +1,16 @@
+FROM openjdk:17-jdk-slim
+
+# Set the working directory
+WORKDIR /app
+
+# Reference the JAR file
+ARG JAR_FILE=target/spring-boot-docker-*.jar
+
+# Copy the JAR file to the container
+COPY ${JAR_FILE} spring-boot-docker.jar
+
+# Run the JAR file
+CMD ["java", "-jar", "-Xmx1024M", "/app/spring-boot-docker.jar"]
+
+# Expose the port
+EXPOSE 9090
